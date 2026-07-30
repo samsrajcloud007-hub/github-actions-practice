@@ -20,7 +20,7 @@ jobs:
         run: echo ${{ github.ref_name }}
 
       - name: List files in repo
-        run: ls -ltr .
+        run: ls ${{ github.workspace }}
 
       - name: Runners OS 
         run: echo ${{ runner.os}}
