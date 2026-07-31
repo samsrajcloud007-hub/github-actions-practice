@@ -20,3 +20,6 @@ jobs:
           python-version: ${{matrix.python_version}}
       - name: print version of python
         run: python --version
+
+      - name: Fail conditon
+        run: if [ ${{matrix.python_version}} -eq "3.12" ] ;then;exit 1;fi
