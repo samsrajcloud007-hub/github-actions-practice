@@ -5,7 +5,7 @@ on:
             - main
 jobs:
     self-hosted:
-        runs-on: self-hosted
+        runs-on: [self-hosted, my-linux-runner]
         steps:
             - name: System Info
               run: |
@@ -13,4 +13,3 @@ jobs:
                 echo "Current working dir: $(pwd)"
                 touch runner.txt 
 
-                
