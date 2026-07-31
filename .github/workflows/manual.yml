@@ -1,0 +1,15 @@
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                type: choice
+                options:
+                - dev
+                - staging
+jobs:
+    manual:
+        runs-on: ubuntu-latest
+        steps:
+            - name: print environment name
+              run: echo "The environment you are running is ${{inputs.environment}}"
+
