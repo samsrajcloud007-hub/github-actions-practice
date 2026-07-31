@@ -1,0 +1,16 @@
+name: self-hosted runner
+on:
+    push:
+        branches:
+            - main
+jobs:
+    self-hosted:
+        runs-on: self-hosted
+        steps:
+            - name: System Info
+              run: |
+                echo "Hostname of the runner: $(hostname)"
+                echo "Current working dir: $(pwd)"
+                touch runner.txt 
+
+                
