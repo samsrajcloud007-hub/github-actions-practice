@@ -22,7 +22,8 @@ jobs:
         run: python --version
 
       - name: Fail conditon
+        shell: bash
         run: |
-          if [ "${{matrix.python_version}}" == "3.12" ]; then
+          if [ "${{matrix.python_version}}" = "3.12" ]; then
           exit 1
           fi
