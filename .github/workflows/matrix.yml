@@ -23,6 +23,6 @@ jobs:
 
       - name: Fail conditon
         run: |
-          if [ ${{matrix.python_version}} -eq 3.12 ] ;then
+          if [ "${{matrix.python_version}}" == "3.12" ]; then
           exit 1
           fi
