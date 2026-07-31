@@ -13,6 +13,6 @@ jobs:
       - name: Install python
         uses: actions/setup-python@v7
         with:
-          python-version: ${{matrix.python_version}}
+          python-version: "${{matrix.python_version}}"
       - name: print version of python
         run: python --version
