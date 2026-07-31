@@ -13,6 +13,13 @@ jobs:
                 echo "Hostame: $(hostname)"
                 echo "Current User: $(whoami)"
 
+            - name: Pre-installed Tools
+              run: |
+                echo "Python Version: $(python --version)"
+                echo "Docker Version: $(docker --version)"
+                echo "Node Version: $(node --version)"
+                echo "Git Version: $(git --version)"
+
     windows:
         runs-on: windows-latest
         steps:
@@ -21,6 +28,12 @@ jobs:
                 echo "OS Name:${{runner.os}}"
                 echo "Hostame: $(hostname)"
                 echo "Current User: $(whoami)"
+            - name: Pre-installed Tools
+              run: |
+                echo "Python Version: $(python --version)"
+                echo "Docker Version: $(docker --version)"
+                echo "Node Version: $(node --version)"
+                echo "Git Version: $(git --version)"
                 
     macos:
         runs-on: macos-latest
@@ -29,5 +42,11 @@ jobs:
               run: |
                 echo "OS Name:${{runner.os}}"
                 echo "Hostame: $(hostname)"
-                echo "Current User: $(whoami)"                
+                echo "Current User: $(whoami)"
+            - name: Pre-installed Tools
+              run: |
+                echo "Python Version: $(python --version)"
+                echo "Docker Version: $(docker --version)"
+                echo "Node Version: $(node --version)"
+                echo "Git Version: $(git --version)"                
                 
