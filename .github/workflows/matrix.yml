@@ -7,12 +7,12 @@ jobs:
   matrix-strategy:
     strategy:
       matrix:
-        python_version: [3.10, 3.11, 3.12]
+        python_version: ["3.10", "3.11", "3.12"]
     runs-on: ubuntu-latest
     steps: 
       - name: Install python
         uses: actions/setup-python@v7
         with:
-          python-version: "${{matrix.python_version}}"
+          python-version: ${{matrix.python_version}}
       - name: print version of python
         run: python --version
