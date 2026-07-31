@@ -9,9 +9,7 @@ jobs:
       matrix:
         python_version: ["3.10", "3.11", "3.12"]
         os: [ubuntu-latest, windows-latest]
-        exclude: 
-          - python_version: "3.10"
-          - os: windows-latest
+
       fail-fast: false
 
 
@@ -28,6 +26,6 @@ jobs:
       - name: Fail conditon
         shell: bash
         run: |
-          if [ "${{matrix.python_version}}" = "3.12" ]; then
+          if [ "${{matrix.python_version}}" = "3.10" ]; then
           exit 1
           fi
