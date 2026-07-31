@@ -1,0 +1,33 @@
+name: GitHub Hosted Runner
+on:
+    push:
+        branches:
+            - main
+jobs:
+    ubuntu:
+        runs-on: ubuntu-latest
+        steps:
+            - name: System Info
+              run: |
+                echo "OS Name:${{vars.OS_RUNNER}}"
+                echo "Hostame: $(hostname -i)"
+                echo "Current User: $(USER)"
+
+    windows:
+        runs-on: windows-latest
+        steps:
+            - name: System Info
+              run: |
+                echo "OS Name:${{vars.OS_RUNNER}}"
+                echo "Hostame: $(hostname -i)"
+                echo "Current User: $(USER)"
+                
+    macos:
+        runs-on: macos-latest
+        steps:
+            - name: System Info
+              run: |
+                echo "OS Name:${{vars.OS_RUNNER}}"
+                echo "Hostame: $(hostname -i)"
+                echo "Current User: $(USER)"                
+                
