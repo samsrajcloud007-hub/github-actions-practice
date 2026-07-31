@@ -9,25 +9,25 @@ jobs:
         steps:
             - name: System Info
               run: |
-                echo "OS Name:${{vars.OS_RUNNER}}"
+                echo "OS Name:${{vars.RUNNER_OS}}"
                 echo "Hostame: $(hostname -i)"
-                echo "Current User: $(USER)"
+                echo "Current User: $(whoami)"
 
     windows:
         runs-on: windows-latest
         steps:
             - name: System Info
               run: |
-                echo "OS Name:${{vars.OS_RUNNER}}"
+                echo "OS Name:${{vars.RUNNER_OS}}"
                 echo "Hostame: $(hostname -i)"
-                echo "Current User: $(USER)"
+                echo "Current User: $(whoami)"
                 
     macos:
         runs-on: macos-latest
         steps:
             - name: System Info
               run: |
-                echo "OS Name:${{vars.OS_RUNNER}}"
+                echo "OS Name:${{vars.RUNNER_OS}}"
                 echo "Hostame: $(hostname -i)"
-                echo "Current User: $(USER)"                
+                echo "Current User: $(whoami)"                
                 
