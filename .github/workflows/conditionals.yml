@@ -10,6 +10,7 @@ jobs:
             - name: to be executed if branch is main
               run: |
                 echo "Deploying to production server on branch $GITHUB_REF" 
+                echo "$GITHUB_EVENT"
               
             - name: to be executed if the previous steps fail
               if: failure()
