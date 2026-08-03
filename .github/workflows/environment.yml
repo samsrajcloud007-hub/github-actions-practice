@@ -1,0 +1,12 @@
+name: Environment Workflow
+on:
+    workflow_dispatch:
+env:
+    APP_NAME: myapp 
+
+jobs:
+    workflowlevel:
+        runs-on: ubuntu-latest
+        steps:
+            - name: print workflow env variable
+              run: echo "Workflow env variable:${{ env.APP_NAME }}"
