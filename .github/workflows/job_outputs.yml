@@ -1,5 +1,5 @@
 on:
-    workflow_disaptch:
+    workflow_dispatch:
 
 jobs:
     get-date:
