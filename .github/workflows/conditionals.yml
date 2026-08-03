@@ -1,0 +1,34 @@
+name: conditonal worfkflow
+on:
+    workflow_dispatch:
+
+jobs:
+    main-branch:
+        if : ${{ github.ref == 'refs/heads/main' }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: to be executed if branch is main
+              run: |
+                echo "Deploying to production server on branch $GITHUB_REF" 
+              
+            - name: to be executed if the previous steps fail
+              if: failure()
+              run: |
+                echo "This command is executed since the previous step failed"
+              
+    second-job:
+        if: github.event == 'push' && github.event != 'pull'
+        runs-on: ubuntu-latest
+        steps:
+            - name: runs on push events
+              run: | 
+                echo "This is a push event"
+            - name: runs even on failure
+              run: |
+                exit 1
+              continue-on-error: true
+            - name: step executed as the previous step failed
+              run: |
+                echo "this step is a dummy step"
+              
+
