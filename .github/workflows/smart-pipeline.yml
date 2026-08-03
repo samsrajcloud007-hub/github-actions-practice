@@ -1,0 +1,26 @@
+name: smart pipeline
+on:
+    push:
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: lint
+              run: echo "Starting Linter"
+
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: test
+              run: echo "Sarting Test"
+    summary:
+        needs: 
+            - lint 
+            - test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print branch
+              run: |
+                echo "EVENT: $GITHUB_EVENT_NAME"
+                echo "COMMIT SHA : $GITHUB_SHA"
