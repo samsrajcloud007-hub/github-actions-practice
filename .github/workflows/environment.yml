@@ -18,3 +18,18 @@ jobs:
         steps:
             - name: Print Job level env variable
               run: echo "Job level env variable:${{ env.ENVIRONMENT }}"
+
+    steplevelenv:
+        env:
+            ENVIRONMENT: staging
+        runs-on: ubuntu-latest
+        steps:
+            - name: print all step level env and all other env variables
+              run: |
+                echo "Step level env:${{ env.VERSION }}"
+                echo "Job Level Env: ${{ env.ENVIRONMENT }}"
+                echo "Workflowlevel Env: $APP_NAME "
+              env: 
+                VERSION: 1.0.0
+                
+            
