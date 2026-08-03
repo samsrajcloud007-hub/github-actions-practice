@@ -10,7 +10,7 @@ jobs:
         steps:
             - name: print date
               id: date
-              run: echo "date=$(date+"%y-%m-%d")" >> "$GITHUB_OUTPUT"
+              run: echo "date=$(date+"%y%m%d")" >> "$GITHUB_OUTPUT"
 
     print-date:
         runs-on: ubuntu-latest
