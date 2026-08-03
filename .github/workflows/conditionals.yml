@@ -18,7 +18,7 @@ jobs:
                 echo "This command is executed since the previous step failed"
               
     second-job:
-        if: github.event_name == 'push' && github.event_name != 'pull'
+        if: github.event_name == 'push'
         runs-on: ubuntu-latest
         steps:
             - name: runs on push events
