@@ -3,7 +3,7 @@ on:
     workflow_dispatch:
 
 env:
-    secret: $MY_SECRET_MESSAGE
+    secret: ${{secrets.MY_SECRET_MESSAGE}}
 jobs:
     secasenv:
         runs-on: ubuntu-latest
