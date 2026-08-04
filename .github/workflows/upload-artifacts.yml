@@ -1,0 +1,19 @@
+name: Upload Artifacts
+on:
+    workflow_dispatch:
+
+jobs:
+    upload-artifact:
+        runs-on: ubuntu-latest
+        steps:
+            - name: create a log file
+              run: |
+                echo "This is a log file that will be uploaded as an artifact" >> ./log.txt
+            
+            - name: upload an artifact
+              uses: actions/upload-artifact@v4
+              with:
+                path: .
+                name: my-artifact
+                
+                
