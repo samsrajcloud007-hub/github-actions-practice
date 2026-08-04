@@ -1,0 +1,13 @@
+name: Secret as workflow
+on:
+    workflow_dispatch:
+
+env:
+    secret: $MY_SECRET_MESSAGE
+jobs:
+    secasenv:
+        runs-on: ubuntu-latest
+        steps:
+            - name: access Secrett key
+              run: |
+                echo "$secret"
