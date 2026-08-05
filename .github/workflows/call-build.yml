@@ -12,6 +12,14 @@ jobs:
             environment: "production"
         secrets:
             docker-token: ${{ secrets.DOCKER_TOKEN }}
-
+    
+    printbuildversion:
+        runs-on: ubuntu-latest
+        needs: callbuild
+        steps:
+            - name: print build version
+              run: |
+                echo "Build Version: ${{ needs.callbuild.outputs.build_version }}"
+          
 
 

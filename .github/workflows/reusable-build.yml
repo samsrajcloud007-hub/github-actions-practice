@@ -14,10 +14,12 @@ on:
             required: true
       outputs:
         build_version: 
-            value: ${{ jobs.buildv-generate.outputs.build_version }}
+            value: ${{ jobs.callworkflow.outputs.build_version }}
 jobs:
     callworkflow:
         runs-on: ubuntu-latest
+        outputs: 
+            build_version: ${{ steps.build_version.outputs.Build_version }}
         steps:
             - name: checkout code
               uses: actions/checkout@v6
@@ -34,14 +36,10 @@ jobs:
                 else
                   echo "Docker token is set: true"
                 fi
-    buildv-generate:
-        runs-on: ubuntu-latest
-        outputs: 
-            build_version: ${{ steps.build_version.outputs.Build_version }}
-        steps:        
-          - name: generate build version
-            id: build_version
-            run: |
+            
+            - name: generate build version
+              id: build_version
+              run: |
                 Build_version="v1.0-${{github.sha}}""
                 "echo Build_version=$(Build_version)" >> $GITHUB_OUTPUT
               
