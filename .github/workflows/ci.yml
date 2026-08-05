@@ -18,6 +18,10 @@ jobs:
             - name: install Dependancies
               run: |
                 pip install -r requirements.txt -r requirements-dev.txt
+             
+            - name: Cache
+              uses: actions/cache@v4                      
+
             
             - name: run linter
               run: |
