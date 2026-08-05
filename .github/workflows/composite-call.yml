@@ -1,0 +1,17 @@
+name: Composite Action Caller
+on:
+    push:
+        branches:
+            - main
+
+
+jobs:
+    call-composite-action:
+        runs-on: ubuntu-latest
+        steps:
+            - name: call Composite action
+              uses: ./.github/actions/setup-and-greet
+              
+            - run: |
+                echo "$greeted" 
+
