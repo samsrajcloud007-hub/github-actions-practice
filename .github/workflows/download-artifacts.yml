@@ -28,4 +28,4 @@ jobs:
 
             - name: print contents
               run: |
-                cat ./myartifact/file1.txt
+                cat ./myartifact/file.txt
