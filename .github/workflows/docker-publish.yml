@@ -21,4 +21,4 @@ jobs:
                 push: false
                 tags: |
                   ${{vars.DOCKER_USERNAME}}/flask-app-claude:${{github.sha}}
-                  ${{vars.DOCKER_USERNAME}}/flask-app-claude:${{github.sha}}
+                  ${{vars.DOCKER_USERNAME}}/flask-app-claude:latest
