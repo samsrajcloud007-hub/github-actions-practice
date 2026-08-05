@@ -41,6 +41,6 @@ jobs:
               id: build_version
               run: |
                 Build_version="v1.0-${{github.sha}}"
-                "echo Build_version=$(Build_version)" >> $GITHUB_OUTPUT
+                "echo Build_version=$Build_version" >> $GITHUB_OUTPUT
               
 
