@@ -25,6 +25,3 @@ runs:
       run: |
        echo "greeted=true" >> $GITHUB_OUTPUT
       shell: bash
-
-   
-
