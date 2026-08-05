@@ -1,3 +1,4 @@
-[flake8]
-max-line-length = 100
-exclude = .git,__pycache__,venv,.venv,build,dist
+-r requirements.txt
+pytest==8.2.2
+pytest-cov==5.0.0
+flake8==7.1.0
