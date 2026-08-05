@@ -1,0 +1,31 @@
+name: Download Artifacts Between Jobs
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    job-1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Generate file
+              run: |
+                echo "File to be uploaded" >> ./file.txt
+            - name: Upload file
+              uses: actions/upload-artifact@v4
+              with:
+                path: .
+                name: myartifact
+    job-2:
+        runs-on: ubuntu-latest
+        steps:
+            - name: download artifact
+              uses: actions/download-artifact@v4
+              with:
+                path: .
+                name: myartifact
+
+            - name: print contents
+              run: |
+                cat myartifact/file1.txt
+                
