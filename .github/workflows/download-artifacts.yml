@@ -28,4 +28,4 @@ jobs:
 
             - name: print contents
               run: |
-                ls -ltr ./myartifact
+                ls -ltr 
