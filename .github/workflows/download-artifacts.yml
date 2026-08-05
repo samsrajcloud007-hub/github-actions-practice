@@ -12,7 +12,7 @@ jobs:
               run: |
                 echo "File to be uploaded" >> ./file.txt
             - name: Upload file
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v6
               with:
                 path: ./file.txt
                 name: myartifact
@@ -22,7 +22,6 @@ jobs:
             - name: download artifact
               uses: actions/download-artifact@v4
               with:
-                path: .
                 name: myartifact
 
             - name: print contents
