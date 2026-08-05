@@ -1,0 +1,30 @@
+name: 'Setup and greet'
+description: 'Setup and greet someone'
+inputs:
+  name:
+    required: true
+
+  language:
+    default: en
+    required: true
+outputs:
+  greeted:
+    value: ${{ steps.greetings.outputs.greeted }}
+runs:
+  using: "composite"
+  steps:
+    - name: print a greeting
+      run: |
+        echo "Hello ${{ inputs.name }}"
+        echo "Date:$(date)"
+        echo  "RUNNER OS: $runner.os"
+      shell: bash
+
+    - name: set greeted
+      id: greetings
+      run: |
+       echo "greeted=true" >> $GITHUB_OUTPUT
+      shell: bash
+
+   
+
