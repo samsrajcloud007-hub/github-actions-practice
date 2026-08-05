@@ -17,11 +17,15 @@ jobs:
             
             - name: install Dependancies
               run: |
-                pip install -r requirements.txt
+                pip install -r requirements.txt -r requirements-dev.txt
             
-            - name: run the script
+            - name: run linter
               run: |
-                python app.py
+                flake8 . --count --show-source --statistics
+            
+            - name: Run test
+              run: |
+                pytest --cov=app --cov-report=term-missing
             
             - name: Failure step
               if: failure()
