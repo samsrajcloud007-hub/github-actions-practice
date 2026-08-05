@@ -4,7 +4,7 @@ on:
 
 jobs:
     CI-Pipeline:
-        runs-on: ubunutu-latest
+        runs-on: ubuntu-latest
         steps:
             - name: checkout code
               uses: actions/checkout@v7
@@ -27,5 +27,5 @@ jobs:
               if: failure()
               run: exit 1
 
-              
+
 
