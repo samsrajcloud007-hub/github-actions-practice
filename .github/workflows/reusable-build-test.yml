@@ -1,0 +1,49 @@
+name: Reusable Build & Test Workflow
+on:
+    workflow_call:
+        inputs:
+            python_version:
+                type: number
+                required: true
+
+            run_test:
+                type: boolean
+                default: true
+        outputs:
+            test_result:
+                value: ${{ jobs.build-and-test.outputs.test_result }}
+
+jobs:
+    build-and-test:
+        runs-on: ubuntu-latest
+        outputs:
+            test_result: ${{ steps.result.outputs.test_result }}
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v6
+
+            - name: Setup Python
+              uses: actions/setup-python@v4
+              with:
+                python_version: ${{ inputs.python_version }}
+            
+            - name: Install dependencies
+              run: |
+                pip install -r requirements.txt -r requirements-dev.txt
+            
+            - name: Run Tests
+              id: test
+              if: ${{ inputs.run_test == true }}
+              run: pytest --cov=app --cov-report=term-missing
+
+
+
+            - name: set output
+              id: result
+              run: |
+                if ["${{ steps.test.outcome }}" == "success"]; then
+                   echo "test_result=passed" >> $GITHUB_OUTPUT
+                else
+                   echo "test_result=failed" >> $GITHUB_OUTPUT
+
+                

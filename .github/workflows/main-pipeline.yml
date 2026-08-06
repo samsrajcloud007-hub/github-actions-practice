@@ -1,0 +1,45 @@
+name: main-pipeline
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build-and-test:
+        uses: ./.github/workflows/reusable-build-test.yml
+        with:
+            python_version: '3.12'
+            run_test: true
+    
+    generate-sha:
+        outputs:
+            short_sha: ${{ steps.short_sha.outputs.short_sha }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: generate short sha
+              id: short_sha
+              run: |
+                echo "short_sha=$(echo ${{ github.sha }}|cut -c1-7)" >> $GITHUB_OUTPUT
+
+    
+    docker:
+        needs: 
+            - build-and-test
+            - generate-sha
+
+        uses: ./.github/workflows/reusable-docker.yml
+        with:
+            image_name: 'flask-app-claude'
+            tag: sha-${{ needs.generate-sha.outputs.short_sha }}
+        secrets:
+            docker_username: ${{ secrets.DOCKER_USERNAME }}
+            docker_token: ${{ secrets.DOCKER_TOKEN }}
+
+    deploy:
+        needs: docker
+        runs-on: ubuntu-latest
+        environment: production
+        steps:
+            - name: Deploy message
+              run: |
+                echo " Deploying image : ${{ needs.docker.outputs.image_url }}"
