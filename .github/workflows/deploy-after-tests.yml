@@ -1,6 +1,6 @@
 on:
     workflow_run:
-        workflows: [ "Run Tests" ]
+        workflows: [ "test workflow" ]
         types: [completed]
 
 jobs:
