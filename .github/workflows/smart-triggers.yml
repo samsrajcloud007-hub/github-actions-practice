@@ -8,9 +8,6 @@ on:
             - 'src/**'
             - 'app/**'
 
-        paths-ignore:
-            - '*.md'
-            - 'docs/**'
 
 jobs:
     smartpipline:
