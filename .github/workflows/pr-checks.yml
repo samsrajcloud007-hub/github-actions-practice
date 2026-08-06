@@ -23,7 +23,7 @@ jobs:
 
                   fi
     branch-name-check:
-        runs-on: ubunut-latest
+        runs-on: ubuntu-latest
         steps:
             - name: Branch Name Check
               run: |
@@ -49,4 +49,3 @@ jobs:
                 else
                   echo "PR Body looks good"
                 fi
-                
