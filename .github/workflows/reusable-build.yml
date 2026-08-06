@@ -1,45 +1,33 @@
-name: reusable workflow
+name: Reusable Workflow
 on:
     workflow_call:
-      inputs:
-        app_name:
-            required: true
-            type: string
-        environment:
-            type: string
-            required: true
-            default: staging
-      secrets:
-        docker-token:
-            required: true
-      outputs:
-        build_version: 
-            value: ${{ jobs.callworkflow.outputs.build_version }}
+        inputs:
+            app_name:
+                type: string
+                required: true
+            environment:
+                type: string
+                required: true
+                default: staging
+        secrets:
+            docker_token:
+                required: true
 jobs:
-    callworkflow:
+    job1:
         runs-on: ubuntu-latest
-        outputs: 
-            build_version: ${{ steps.build_version.outputs.Build_version }}
         steps:
-            - name: checkout code
+            - name: Checkout code
               uses: actions/checkout@v6
 
-            - name: print 
-              run:
-                echo "Building ${{ inputs.app_name }} for ${{ inputs.environment }}"
-            
-            
-            - name: docker token
+            - name: print info
               run: |
-                if [ -z ${{ secrets.docker-token }} ];then
-                  echo "Docker token is not set"
+                echo "Build ${{inputs.app_name}} for ${{ inputs.environment }}"
+            
+            - name: Check for docker token
+              run: |
+                if [ -z ${{ secrets.docker_token}} ]; then
+                  echo "Docker token is set: False"
                 else
-                  echo "Docker token is set: true"
+                  echo "Docker token is set: True"
                 fi
             
-            - name: generate build version
-              id: build_version
-              run: |
-                echo "Build_version=v1.0-${{github.sha}}" >> $GITHUB_OUTPUT
-              
-
