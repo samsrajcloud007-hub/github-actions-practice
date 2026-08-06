@@ -1,0 +1,23 @@
+name: PR Workflow
+on:
+    pull_request:
+        types:
+            - opened
+            - synchronize
+            - reopened
+            - closed
+jobs:
+    pr:
+        runs-on: ubuntu-latest
+        steps:
+            - name: info
+              run: |
+                echo "Event Fired: ${{ github.event.action }}"
+                echo "PR Title: ${{ github.event.pull_request.title }}"
+                echo "PR Author: ${{ github.event.pull_request.user.login }}"
+                echo "Source branch: ${{ github.head_ref }}"
+                echo "Target Branch: ${{ github.base_ref }} "
+            - name: conditional run
+              if: github.event.pull_request.merged == true
+              run: |
+                echo "PR is merged"
