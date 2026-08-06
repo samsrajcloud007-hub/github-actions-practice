@@ -1,0 +1,52 @@
+name: PR Check
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    file-size-check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Code Checkout
+              uses: actions/checkout@v6
+
+            - name: file size check
+              run: |
+                LARGE_FILES_LIST=$(find . -type f -size +1M)
+                  if [ -n "$LARGE_FILES_LIST" ]; then
+                    echo "File is greater than 1MB , Please check "
+                    echo $LARGE_FILES_LIST
+                    exit 1
+                  else
+                    echo "File Check Successful, proceeding further"
+
+                  fi
+    branch-name-check:
+        runs-on: ubunut-latest
+        steps:
+            - name: Branch Name Check
+              run: |
+                branch_name=${{ github.head_ref }}
+                case "$branch_name" in
+                  feature/*|fix/*|docs/*
+                    echo ""$branch_name" is valid"
+                    ;;
+                *)
+                  echo ""$branch_name" is not valid"
+                  exit 1
+                  ;;
+                esac
+
+    pr-body-check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: pr body check
+              run: |
+                pr_body=${{ github.event.pull_request.body }}
+                if [ -z "$pr_body"]; then
+                  echo "PR Body is empty , please add context"
+                else
+                  echo "PR Body looks good"
+                fi
+                
