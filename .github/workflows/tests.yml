@@ -1,0 +1,14 @@
+name: test workflow
+on: 
+    push:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: code checkout
+              uses: actions/checkout@v6
+
+            - name: run tests
+              run: pytest --cov=app --cov-report=term-missing
+                
