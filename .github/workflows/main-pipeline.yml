@@ -37,7 +37,8 @@ jobs:
             docker_token: ${{ secrets.DOCKER_TOKEN }}
     
     docker-image-scan:
-        runs-on: ubunut-latest
+        runs-on: ubuntu-latest
+        needs: docker-call
         steps:
             - name: Scan Docker Image for vulnerabilties
               uses: aquasecurity/trivy-scanner@master
