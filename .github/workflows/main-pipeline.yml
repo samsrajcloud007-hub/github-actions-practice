@@ -43,7 +43,7 @@ jobs:
             - name: Scan Docker Image for vulnerabilties
               uses: aquasecurity/trivy-action@v0.36.0
               with:
-                iamge_ref: '${{ vars.DOCKER_USERNAME }}/flask-app-claude:latest'
+                image_ref: '${{ vars.DOCKER_USERNAME }}/flask-app-claude:latest'
                 format: 'table'
                 exit-code: '1'
                 severity: 'CRITICAL,HIGH'
