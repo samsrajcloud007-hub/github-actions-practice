@@ -30,7 +30,7 @@ jobs:
         uses: ./.github/workflows/reusable-docker.yml
         with:
             image_name: 'flask-app-claude'
-            tag: sha-${{ needs.generate-sha.outputs.short_sha }}
+            tag: 'sha-${{ needs.generate-sha.outputs.short_sha }}'
         secrets:
             docker_username: ${{ vars.DOCKER_USERNAME }}
             docker_token: ${{ secrets.DOCKER_TOKEN }}
