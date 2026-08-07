@@ -19,7 +19,7 @@ on:
 jobs:
     build-and-push:
         outputs:
-            image_url: ${{ steps.image_url.outputs.image_url }}
+            image_url: ${{ steps.image_id.outputs.image_url }}
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Code
@@ -41,7 +41,7 @@ jobs:
                   ${{ secrets.docker_username}}/${{ inputs.image_name }}:latest
 
             - name: generate image_url
-              id: image_url
+              id: image_id
               run: |
                 echo "image_url=${{ secrets.docker_username }}/${{ inputs.image_name }}:${{ inputs.tag }}" >> $GITHUB_OUTPUT
             

@@ -42,4 +42,4 @@ jobs:
         steps:
             - name: Deploy message
               run: |
-                echo " Deploying image : ${{ needs.docker.result.image_url }}"
+                echo " Deploying image : ${{ needs.docker.outputs.image_url }}"
