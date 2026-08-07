@@ -28,8 +28,6 @@ jobs:
             - generate-sha
 
         uses: ./.github/workflows/reusable-docker.yml
-        outputs:
-            image_url: ${{ jobs.docker-call.outputs.image_url }}
         with:
             image_name: 'flask-app-claude'
             tag: sha-${{ needs.generate-sha.outputs.short_sha }}
