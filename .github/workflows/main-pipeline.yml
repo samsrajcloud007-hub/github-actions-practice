@@ -35,6 +35,17 @@ jobs:
         secrets:
             docker_username: ${{ vars.DOCKER_USERNAME }}
             docker_token: ${{ secrets.DOCKER_TOKEN }}
+    
+    docker-image-scan:
+        runs-on: ubunut-latest
+        steps:
+            - name: Scan Docker Image for vulnerabilties
+              uses: aquasecurity/trivy-scanner@master
+              with:
+                iamge_ref: ${{ vars.DOCKER_USERNAME }}/flask-app-claude:latest
+                format: 'table'
+                exit-code: '1'
+                severity: 'CRITICAL,HIGH'
         
 
     deploy:

@@ -39,7 +39,7 @@ jobs:
                 tags: |
                   ${{ secrets.docker_username }}/${{ inputs.image_name }}:${{ inputs.tag }}
                   ${{ secrets.docker_username}}/${{ inputs.image_name }}:latest
-
+            
             - name: generate image_url
               id: image_id
               run: |
