@@ -22,7 +22,7 @@ jobs:
                 echo "short_sha=$(echo ${{ github.sha }}|cut -c1-7)" >> $GITHUB_OUTPUT
 
     
-    docker:
+    docker-call:
         needs: 
             - build-and-test
             - generate-sha
@@ -36,10 +36,10 @@ jobs:
             docker_token: ${{ secrets.DOCKER_TOKEN }}
 
     deploy:
-        needs: docker
+        needs: docker-call
         runs-on: ubuntu-latest
         environment: production
         steps:
             - name: Deploy message
               run: |
-                echo " Deploying image : ${{ needs.docker.outputs.image_url }}"
+                echo " Deploying image : ${{ needs.docker-call.outputs.image_url }}"
