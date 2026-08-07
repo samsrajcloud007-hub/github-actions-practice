@@ -41,7 +41,7 @@ jobs:
         needs: docker-call
         steps:
             - name: Scan Docker Image for vulnerabilties
-              uses: quasecurity/trivy-action@v0.36.0
+              uses: aquasecurity/trivy-action@v0.36.0
               with:
                 iamge_ref: '${{ vars.DOCKER_USERNAME }}/flask-app-claude:latest'
                 format: 'table'
@@ -50,7 +50,9 @@ jobs:
         
 
     deploy:
-        needs: docker-call
+        needs: 
+            - docker-call
+            - docker-image-scan
         runs-on: ubuntu-latest
         environment: production
         steps:
