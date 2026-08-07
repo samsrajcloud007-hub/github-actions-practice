@@ -43,6 +43,6 @@ jobs:
             - name: generate image_url
               id: image_id
               run: |
-                image_url=${{ secrets.docker_username }}/${{ inputs.image_name }}:${{ inputs.tag }}
+                image_url="${{ vars.DOCKER_USERNAME }}/${{ inputs.image_name }}:${{ inputs.tag }}"
                 echo "image_url=${image_url}" >> $GITHUB_OUTPUT
             
